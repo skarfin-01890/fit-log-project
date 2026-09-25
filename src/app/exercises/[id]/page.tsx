@@ -1,16 +1,20 @@
 import InfoRow from "@/app/components/InfoRow";
+import SavedBtn from "@/app/components/sharedBtn/SavedBtn";
+import TodayplanBtn from "@/app/components/sharedBtn/TodayplanBtn";
 import { IExercise } from "@/types/exerciseTypes";
 import Image from "next/image";
+import { FaBookmark } from "react-icons/fa";
+import { MdAddToPhotos } from "react-icons/md";
+import { toast } from "react-toastify";
 
-type ExerciseDetailsProps = {
-  exercise: IExercise;
-};
 
 const CardDetails = async ({ params, }: { params: Promise<{ id: string }>; }) =>
 	{ const { id } = await params;
 
+
 const res = await fetch( `https://api.abcz.workers.dev/api/fitlog/${id}` );
  const exercise = await res.json();
+
   return (
     <section className="min-h-screen bg-[#101827] px-4 py-10 text-white">
       <div className="mx-auto max-w-7xl">
@@ -24,7 +28,7 @@ const res = await fetch( `https://api.abcz.workers.dev/api/fitlog/${id}` );
 
               className="object-cover"
                fill
-              
+
               sizes="(max-width: 1024px) 100vw, 588px"
               priority
             />
@@ -102,7 +106,7 @@ const res = await fetch( `https://api.abcz.workers.dev/api/fitlog/${id}` );
               </h2>
 
               <ol className="mt-4 space-y-3">
-                {exercise.instructions.map((instruction, index) => (
+                {exercise.instructions.map((instruction:string, index:number) => (
                   <li
                     key={index}
                     className="flex gap-3 text-sm leading-6 text-white/75"
@@ -119,19 +123,9 @@ const res = await fetch( `https://api.abcz.workers.dev/api/fitlog/${id}` );
 
             {/* Buttons */}
             <div className="mt-8 flex flex-wrap gap-4">
-              <button
-                type="button"
-                className="rounded-xl bg-[#dfff00] px-7 py-3.5 text-sm font-bold text-black transition hover:bg-[#c9e600]"
-              >
-                Add to today&apos;s plan
-              </button>
+             <TodayplanBtn exercise={exercise}></TodayplanBtn>
 
-              <button
-                type="button"
-                className="rounded-xl border border-white/20 bg-white/[0.03] px-7 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
-              >
-                ♡ Save for later
-              </button>
+              <SavedBtn exercise={exercise}></SavedBtn>
             </div>
 
           </div>

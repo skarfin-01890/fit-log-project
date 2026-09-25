@@ -5,7 +5,7 @@ const Navbar = () => {
 	const links=<div className='flex gap-5 text-gray-300'>
 
 <Link href={"/"}>Workouts</Link>
-<Link href={"/"}>My Plan</Link>
+<Link href={"/myPlan"}>My Plan</Link>
 
 	</div>
 	return (
