@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
+import { ExerciseContext } from '@/Context/ExerciseContext';
 
 const Navbar = () => {
 	const links=<div className='flex gap-5 text-gray-300'>
@@ -7,7 +10,9 @@ const Navbar = () => {
 <Link href={"/"}>Workouts</Link>
 <Link href={"/myPlan"}>My Plan</Link>
 
+
 	</div>
+	const {todayPlan, setTodayPlan, saveLater, setSavelater}=useContext(ExerciseContext)
 	return (
 
 		<div className='bg-black border-b border-gray-900'>
@@ -30,9 +35,9 @@ const Navbar = () => {
       {links}
     </ul>
   </div>
-  <div className="navbar-end">
-    <a className="btn">Plan </a>
-	<a className="btn">Saved</a>
+  <div className="navbar-end flex gap-4">
+    <a className="">Plan  <span className="bg-[#c2f800] text-black p-1 rounded-full">{todayPlan.length}</span> </a>
+	<a className="">Saved {saveLater.length}</a>
   </div>
 </div>
 </div>

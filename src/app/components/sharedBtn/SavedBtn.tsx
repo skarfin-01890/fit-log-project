@@ -10,9 +10,7 @@ import { toast } from "react-toastify";
 const SavedBtn = ({ exercise }: { exercise: IExercise }) => {
   const context = useContext(ExerciseContext);
 
-  if (!context) {
-    throw new Error("SavedBtn must be used inside ExerciseProvider");
-  }
+  
 
   const { saveLater,setSavelater } = context;
 
