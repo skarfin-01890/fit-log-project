@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Clock3, Flame, Star } from "lucide-react";
 import { IExercise } from "@/types/exerciseTypes";
+import Link from "next/link";
 
 
 
@@ -10,7 +11,7 @@ interface ExerciseCardProps {
 
 const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
   return (
-    <div className="overflow-hidden transition-all duration-300 hover:-translate-y-2 rounded-2xl border border-[#2a2d35] bg-[#17191f]">
+    <Link href={`exercises/${exercise.id}`} className="overflow-hidden transition-all duration-300 hover:-translate-y-2 rounded-2xl border border-[#2a2d35] bg-[#17191f]">
 
       {/* Image */}
       <div className="relative h-[205px] w-full">
@@ -67,7 +68,7 @@ const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
 
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
